@@ -64,14 +64,15 @@ EXTENSIONS = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    "scrapy.pipelines.files.FilesPipeline": 1,
+    "tfls.pipelines.ImagesWithMetaPipeline": 1,
     "tfls.pipelines.RewriteImageURLPipeline": 2,
     "tfls.pipelines.ConvertToMarkdownPipeline": 3,
     "tfls.pipelines.ExportMarkdownPipeline": 999
 }
 
-FILES_STORE = "./.scrapy/files"
-FILES_EXPIRES = 365
+IMAGES_STORE = "./.scrapy/images"
+IMAGES_EXPIRES = 365
+MEDIA_ALLOW_REDIRECTS = True
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

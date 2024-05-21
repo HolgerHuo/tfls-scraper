@@ -7,30 +7,30 @@ from hashlib import md5
 
 class TflsSpider(CrawlSpider):
     name = "tfls"
-    allowed_domains = ["tfls.tj.edu.cn"]
+    allowed_domains = ["tfls.tj.edu.cn", "work.tfls.tj.edu.cn", "xsc.tfls.tj.edu.cn"]
 
     pages_with_sidebars = [
-        {'name': '校园概况', 'url': 'http://tfls.tj.edu.cn/html/school/'},
-        {'name': '管理机构', 'url': 'http://tfls.tj.edu.cn/html/institution/'},
-        {'name': '教学科研', 'url': 'http://tfls.tj.edu.cn/html/research/'},
-        {'name': '学生之窗', 'url': 'http://tfls.tj.edu.cn/html/students/'},
-        {'name': '国际课程', 'url': 'http://tfls.tj.edu.cn/html/international/'},
-        {'name': '师资队伍', 'url': 'http://tfls.tj.edu.cn/html/teachers/'},
-        {'name': '党政工团', 'url': 'http://tfls.tj.edu.cn/html/partypolicy/'},
-        {'name': '校务公开', 'url': 'http://tfls.tj.edu.cn/html/publicaffair/'},
-        {'name': '培训中心', 'url': 'http://tfls.tj.edu.cn/html/tcenter/'},
-        {'name': '公开招聘', 'url': 'http://tfls.tj.edu.cn/html/recruitment/'},
-        {'name': '新闻中心', 'url': 'http://tfls.tj.edu.cn/html/news/'},
-        {'name': '育人特色', 'url': 'http://tfls.tj.edu.cn/html/moral/'},
-        {'name': '校友之家', 'url': 'http://tfls.tj.edu.cn/html/alumni/'},
-        {'name': '对外交流', 'url': 'http://tfls.tj.edu.cn/html/external/'},
-        #{'name': '招生信息', 'url': 'http://tfls.tj.edu.cn/html/admission/'}
+        {'name': '校园概况', 'url': 'http://work.tfls.tj.edu.cn/html/school/'},
+        {'name': '管理机构', 'url': 'http://work.tfls.tj.edu.cn/html/institution/'},
+        {'name': '教学科研', 'url': 'http://work.tfls.tj.edu.cn/html/research/'},
+        {'name': '学生之窗', 'url': 'http://work.tfls.tj.edu.cn/html/students/'},
+        {'name': '国际课程', 'url': 'http://work.tfls.tj.edu.cn/html/international/'},
+        {'name': '师资队伍', 'url': 'http://work.tfls.tj.edu.cn/html/teachers/'},
+        {'name': '党政工团', 'url': 'http://work.tfls.tj.edu.cn/html/partypolicy/'},
+        {'name': '校务公开', 'url': 'http://work.tfls.tj.edu.cn/html/publicaffair/'},
+        {'name': '培训中心', 'url': 'http://work.tfls.tj.edu.cn/html/tcenter/'},
+        {'name': '公开招聘', 'url': 'http://work.tfls.tj.edu.cn/html/recruitment/'},
+        {'name': '新闻中心', 'url': 'http://work.tfls.tj.edu.cn/html/news/'},
+        {'name': '育人特色', 'url': 'http://work.tfls.tj.edu.cn/html/moral/'},
+        {'name': '校友之家', 'url': 'http://work.tfls.tj.edu.cn/html/alumni/'},
+        {'name': '对外交流', 'url': 'http://work.tfls.tj.edu.cn/html/external/'},
+        #{'name': '招生信息', 'url': 'http://work.tfls.tj.edu.cn/html/admission/'}
     ]
 
     pages = [
-        {'name': '名师风采', 'url': 'http://tfls.tj.edu.cn/html/teachers/master/'},
-        {'name': '优秀学子', 'url': 'http://tfls.tj.edu.cn/html/students/master/'},
-        {'name': '历任校长', 'url': 'http://tfls.tj.edu.cn/html/single/principals.html'}
+        {'name': '名师风采', 'url': 'http://work.tfls.tj.edu.cn/html/teachers/master/'},
+        {'name': '优秀学子', 'url': 'http://work.tfls.tj.edu.cn/html/students/master/'},
+        {'name': '历任校长', 'url': 'http://work.tfls.tj.edu.cn/html/single/principals.html'}
     ]
 
     def start_requests(self):
@@ -73,13 +73,13 @@ class TflsSpider(CrawlSpider):
             if sidebar and page['title'] in sidebar:
                 sequence = ['school','teachers','institution']
                 page['weight'] = sidebar.index(page['title']) + 1 + (sequence.index(page['path']) +1)*100 if page['path'] in sequence else sidebar.index(page['title']) + 1 
-            if page['url'] == 'http://tfls.tj.edu.cn/html/single/principals.html':
+            if page['url'] == 'http://work.tfls.tj.edu.cn/html/single/principals.html':
                 page['weight'] = 200
-            page['file_urls'] = []
+            page['image_urls'] = []
             for url in response.xpath('//div[@id="content_div"]//img/@src').extract():
                 if 'www.tfls.cn' in url:
                     url = url.replace('www.tfls.cn', 'tfls.tj.edu.cn')
-                page['file_urls'].append(url)
+                page['image_urls'].append(url)
             yield page
     
     def parse_xsc(self, res):

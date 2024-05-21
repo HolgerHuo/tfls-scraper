@@ -6,8 +6,8 @@
 import scrapy
 
 class PageItem(scrapy.Item):
-    file_urls = scrapy.Field()
-    files = scrapy.Field()
+    image_urls = scrapy.Field()
+    images = scrapy.Field()
     description = scrapy.Field()
     tags = scrapy.Field()
     date = scrapy.Field()
