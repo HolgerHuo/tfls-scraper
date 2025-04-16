@@ -73,7 +73,7 @@ class ExportMarkdownPipeline:
             'description': item.get('description', None),
             'summary': item.get('description', None),
             'isCJKLanguage': True,
-            'aliases': [item.get('url', '').replace('http://work.tfls.tj.edu.cn', '')] if item.get('url', False) else None,
+            'aliases': [item.get('url', '').replace('http://tfls.tj.edu.cn', '')] if item.get('url', False) else None,
             'slug': item.get('slug', None),
             'categories': item.get('categories', None),
             'tags': item.get('tags', None),
