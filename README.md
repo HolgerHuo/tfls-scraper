@@ -1,6 +1,6 @@
 # TFLS Scraper
 
-![GitHub last commit](https://img.shields.io/github/last-commit/holgerhuo/tfls-scraper)![GitHub release (latest by date)](https://img.shields.io/github/v/release/holgerhuo/tfls-scraper)![GitHub](https://img.shields.io/github/license/holgerhuo/tfls-scraper)![GitHub all releases](https://img.shields.io/github/downloads/holgerhuo/tfls-scraper/total)![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/holgerhuo/tfls-scraper)
+![last commit](https://img.shields.io/gitea/last-commit/TFLSOnline/tfls-scraper?gitea_url=https://code.dragoncloud.win)![latest release](https://img.shields.io/gitea/v/release/TFLSOnline/tfls-scraper?gitea_url=https://code.dragoncloud.win)
 
 
 ## Introduction
@@ -8,6 +8,15 @@
 The project crawls [http://tfls.tj.edu.cn](http://tfls.tj.edu.cn) and mirrors it to [https://tfls.online](https://tfls.online). 
 
 The official TFLS ([http://tfls.tj.edu.cn](http://tfls.tj.edu.cn)) is very out-of-date and unstable. This project aims to provide a modern mirror with all contents re-built using modern frontend stack.
+
+This repo is available both at [https://code.dragoncloud.win/TFLSOnline/tfls-scraper](https://code.dragoncloud.win/TFLSOnline/tfls-scraper) and [GitHub](https://github.com/holgerhuo/tfls-scraper)
+
+## Usage
+
+```
+pip3 install -r requirements.txt
+scrapy crawl tfls
+```
 
 ## To-dos
 

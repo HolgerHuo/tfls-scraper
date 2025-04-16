@@ -48,7 +48,7 @@ def _md(html, **options):
 class RewriteImageURLPipeline:
     def process_item(self, item, spider):
         content = item['content']
-        for img in item['images']:
+        for img in item.get('images', []):
             content = content.replace(img['url']+"\"", f"https://cdn.tfls.online/mirror/{img['path']}\" width='{img['size'][0]}' height='{img['size'][1]}'")
             content = content.replace(img['url']+"\'", f"https://cdn.tfls.online/mirror/{img['path']}\" width='{img['size'][0]}' height='{img['size'][1]}'")
         item['content'] = content
